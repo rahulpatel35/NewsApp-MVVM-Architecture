@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NewsAppMVVMArchitecture"
+rootProject.name = "NewsApp-MVVM-Architecture"
 include(":app")
  
