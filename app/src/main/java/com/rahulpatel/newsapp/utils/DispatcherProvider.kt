@@ -3,24 +3,19 @@ package com.rahulpatel.newsapp.utils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-// this is a DispatcherProvider pattern for coroutines.
-// if You hardcoded Dispatchers.IO.
-//When running unit tests, coroutines will use the real IO dispatcher, which means:
-//Code runs on background threads → tests can be slow, flaky, or hard to control.
-//You can’t easily advance or pause coroutine execution in tests.
+// DispatcherProvider is an abstraction over Dispatchers in Kotlin Coroutines.
+// DefaultDispatcherProvider just delegates to the real Dispatchers provided by Kotlin.
+// Why this is useful -> Dependency Injection, Testability, Consistency
+// Dependency Injection : Instead of calling Dispatchers.IO or Dispatchers.Main directly inside your code, you inject a DispatcherProvider.
+// This makes your code more flexible and testable.
 
-// What this achieves (the abstraction part)
-//DispatcherProvider = abstraction (just defines what dispatchers you need, not which ones).
-//DefaultDispatcherProvider = real implementation (production dispatchers).
-//TestDispatcherProvider = fake implementation (test dispatchers).
-//So your code depends on the abstraction (DispatcherProvider) instead of the concrete thing (Dispatchers.IO).
-//This follows the Dependency Inversion Principle (DIP) from SOLID.
+// Testability-> In tests, you can provide a fake dispatcher (like TestCoroutineDispatcher or StandardTestDispatcher) so that your code runs synchronously and is easier to test.
+// Consistency -> If later you want to change dispatchers (e.g., use a custom thread pool), you only modify DefaultDispatcherProvider instead of hunting down Dispatchers.IO everywhere.
 
-// In simple words
-//Without abstraction → your code is locked to real dispatchers → hard to test.
-//With abstraction (DispatcherProvider) → your code doesn’t care which dispatcher it’s running on → you can swap in real ones for production, fake ones for tests.
-//This is why abstraction makes coroutine-based code cleaner, testable, and maintainable.
-
+// Where you typically use this pattern
+// Repositories → network/db calls run on io
+// UseCases → background work with default
+// ViewModels → UI updates with main
 interface DispatcherProvider {
 
     val main: CoroutineDispatcher
