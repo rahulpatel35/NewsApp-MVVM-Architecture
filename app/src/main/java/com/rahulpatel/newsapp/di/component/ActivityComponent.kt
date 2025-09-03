@@ -2,7 +2,7 @@ package com.rahulpatel.newsapp.di.component
 
 import com.rahulpatel.newsapp.di.ActivityScope
 import com.rahulpatel.newsapp.di.module.ActivityModule
-import com.rahulpatel.newsapp.ui.topheadlines.TopHeadlineActivity
+import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineActivity
 import dagger.Component
 
 @ActivityScope

@@ -1,6 +1,5 @@
-package com.rahulpatel.newsapp.ui.topheadlines
+package com.rahulpatel.newsapp.ui.topheadline
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent

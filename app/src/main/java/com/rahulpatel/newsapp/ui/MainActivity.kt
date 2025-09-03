@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rahulpatel.newsapp.databinding.ActivityMainBinding
-import com.rahulpatel.newsapp.ui.topheadlines.TopHeadlineActivity
+import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

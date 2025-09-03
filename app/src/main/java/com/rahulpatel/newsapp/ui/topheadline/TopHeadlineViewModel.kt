@@ -1,4 +1,4 @@
-package com.rahulpatel.newsapp.ui.topheadlines
+package com.rahulpatel.newsapp.ui.topheadline
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.log
 
 class TopHeadlineViewModel @Inject constructor(
     private val topHeadlineRepository: TopHeadlineRepository,
@@ -34,7 +33,7 @@ class TopHeadlineViewModel @Inject constructor(
         startFetchingArticle()
     }
 
-    private fun startFetchingArticle() {
+    fun startFetchingArticle() {
         if (checkInternetConnection()) {
             fetchingArticle()
         } else {

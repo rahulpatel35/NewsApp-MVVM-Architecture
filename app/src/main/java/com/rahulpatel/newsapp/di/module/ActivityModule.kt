@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.rahulpatel.newsapp.data.model.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.di.ActivityContext
 import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
-import com.rahulpatel.newsapp.ui.topheadlines.TopHeadlineAdapter
-import com.rahulpatel.newsapp.ui.topheadlines.TopHeadlineViewModel
+import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
+import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineViewModel
 import com.rahulpatel.newsapp.utils.DispatcherProvider
 import com.rahulpatel.newsapp.utils.NetworkHelper
 import com.rahulpatel.newsapp.utils.logger.Logger
