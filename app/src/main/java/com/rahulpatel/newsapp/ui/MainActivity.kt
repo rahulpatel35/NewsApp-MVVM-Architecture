@@ -1,11 +1,14 @@
 package com.rahulpatel.newsapp.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rahulpatel.newsapp.databinding.ActivityMainBinding
+import com.rahulpatel.newsapp.ui.topheadlines.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -20,5 +23,9 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         setContentView(binding.root)
+    }
+
+    fun startTopHeadlinesActivity(view: View) {
+        startActivity(Intent(TopHeadlineActivity.getStartIntent(this@MainActivity)))
     }
 }
