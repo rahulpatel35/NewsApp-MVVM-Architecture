@@ -25,7 +25,7 @@ class TopHeadlineViewModel @Inject constructor(
     private val TAG: String = "TopHeadLineViewModel"
     private val _topHeadlineUiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
 
-    private val topHeadLineUiState: StateFlow<UiState<List<Article>>> = _topHeadlineUiState
+    val topHeadLineUiState: StateFlow<UiState<List<Article>>> = _topHeadlineUiState
 
     private fun checkInternetConnection(): Boolean = networkHelper.isNetworkConnected()
 
