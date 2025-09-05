@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahulpatel.newsapp.NewsApplication
-import com.rahulpatel.newsapp.data.model.topheadlines.Article
+import com.rahulpatel.newsapp.data.model.topheadlines.ApiArticle
 import com.rahulpatel.newsapp.databinding.ActivityTopHeadlineBinding
 import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
 import com.rahulpatel.newsapp.di.module.ActivityModule
@@ -74,6 +74,7 @@ class TopHeadlineActivity : AppCompatActivity() {
                                 progressBar.visibility = View.GONE
                                 binding.recyclerView.visibility = View.GONE
                                 binding.includeLayout.errorLayout.visibility = View.VISIBLE
+                                binding.includeLayout.errorDescriptionTv.text = it.toString()
                             }
                         }
                     }
@@ -82,7 +83,7 @@ class TopHeadlineActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderList(data: List<Article>) {
+    private fun renderList(data: List<ApiArticle>) {
         topHeadlineAdapter.addArticle(data)
         topHeadlineAdapter.notifyDataSetChanged()
     }

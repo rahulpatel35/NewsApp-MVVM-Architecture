@@ -3,7 +3,7 @@ package com.rahulpatel.newsapp.ui.topheadline
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rahulpatel.newsapp.data.model.repository.TopHeadlineRepository
-import com.rahulpatel.newsapp.data.model.topheadlines.Article
+import com.rahulpatel.newsapp.data.model.topheadlines.ApiArticle
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.utils.AppConstant
 import com.rahulpatel.newsapp.utils.DispatcherProvider
@@ -23,9 +23,9 @@ class TopHeadlineViewModel @Inject constructor(
     private val logger: Logger
 ) : ViewModel() {
     private val TAG: String = "TopHeadLineViewModel"
-    private val _topHeadlineUiState = MutableStateFlow<UiState<List<Article>>>(UiState.Loading)
+    private val _topHeadlineUiState = MutableStateFlow<UiState<List<ApiArticle>>>(UiState.Loading)
 
-    val topHeadLineUiState: StateFlow<UiState<List<Article>>> = _topHeadlineUiState
+    val topHeadLineUiState: StateFlow<UiState<List<ApiArticle>>> = _topHeadlineUiState
 
     private fun checkInternetConnection(): Boolean = networkHelper.isNetworkConnected()
 
@@ -47,10 +47,11 @@ class TopHeadlineViewModel @Inject constructor(
                 .flowOn(dispatcherProvider.io)
                 .catch { e ->
                     _topHeadlineUiState.value = UiState.Error(e.toString())
-                    logger.d(TAG, "Success")
+                    logger.d(TAG, "Exception:$e")
                 }
                 .collect {
-
+                    _topHeadlineUiState.value = UiState.Success(it)
+                    logger.d("TopHeadlineViewModel", "Success")
                 }
         }
     }
