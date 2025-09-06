@@ -2,11 +2,16 @@ package com.rahulpatel.newsapp.di.module
 
 import android.app.Application
 import android.content.Context
+import androidx.room.Room
 import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.api.ApiKeyInterceptor
 import com.rahulpatel.newsapp.data.api.NetworkService
+import com.rahulpatel.newsapp.data.local.AppDatabaseService
+import com.rahulpatel.newsapp.data.local.DatabaseService
+import com.rahulpatel.newsapp.data.local.NewsAppDatabase
 import com.rahulpatel.newsapp.di.ApplicationContext
 import com.rahulpatel.newsapp.di.BaseUrl
+import com.rahulpatel.newsapp.di.DatabaseName
 import com.rahulpatel.newsapp.di.NetworkAPIKey
 import com.rahulpatel.newsapp.utils.AppConstant
 import com.rahulpatel.newsapp.utils.DefaultDispatcherProvider
@@ -83,4 +88,28 @@ class ApplicationModule(private val newsApplication: NewsApplication) {
     @NetworkAPIKey
     @Provides
     fun provideApiKey(): String = AppConstant.API_KEY
+
+
+    @Provides
+    @Singleton
+    fun provideDatabaseService(appDatabase: NewsAppDatabase): DatabaseService {
+        return AppDatabaseService(appDatabase)
+    }
+
+    @DatabaseName
+    @Provides
+    fun provideDatabaseName(): String = AppConstant.DATABASE_NAME
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(
+        @ApplicationContext context: Context,
+        @DatabaseName databaseName: String
+    ): NewsAppDatabase {
+        return Room.databaseBuilder(
+            context,
+            NewsAppDatabase::class.java,
+            databaseName
+        ).build()
+    }
 }

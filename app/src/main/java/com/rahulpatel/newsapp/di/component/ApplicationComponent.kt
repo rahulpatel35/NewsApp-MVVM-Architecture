@@ -3,6 +3,8 @@ package com.rahulpatel.newsapp.di.component
 import android.content.Context
 import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.api.NetworkService
+import com.rahulpatel.newsapp.data.local.DatabaseService
+import com.rahulpatel.newsapp.data.local.NewsAppDatabase
 import com.rahulpatel.newsapp.di.ApplicationContext
 import com.rahulpatel.newsapp.di.module.ApplicationModule
 import com.rahulpatel.newsapp.utils.DispatcherProvider
@@ -28,5 +30,9 @@ interface ApplicationComponent {
     fun getDispatcherProvider(): DispatcherProvider
 
     fun getLoggerProvider(): Logger
+
+    fun getDatabaseService(): DatabaseService
+
+    fun getNewsAppDatabase(): NewsAppDatabase
 
 }
