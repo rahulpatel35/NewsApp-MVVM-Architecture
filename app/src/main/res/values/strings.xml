@@ -16,5 +16,11 @@
     <string name="proceed">Proceed</string>
     <string name="data_not_found">Data Not Found.</string>
     <string name="language_info">Please select any two language.</string>
+    <string name="top_headline">Top Headline</string>
+    <string name="country_selection">Country Selection Screen</string>
+    <string name="language_selection">Language Selection Screen</string>
+    <string name="search_screen">Search Screen</string>
+    <string name="offline">Offline</string>
+    <string name="top_headline_pagination">Pagination Top Headline</string>
 
 </resources>

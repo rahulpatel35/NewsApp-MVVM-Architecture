@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rahulpatel.newsapp.databinding.ActivityMainBinding
+import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineActivity
+import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineActivity
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineActivity
 
 class MainActivity : AppCompatActivity() {
@@ -27,5 +29,13 @@ class MainActivity : AppCompatActivity() {
 
     fun startTopHeadlinesActivity(view: View) {
         startActivity(Intent(TopHeadlineActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startOfflineTopHeadlinesActivity(view: View) {
+        startActivity(Intent(OfflineTopHeadlineActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startTopHeadlinesPaginationActivity(view: View) {
+        startActivity(Intent(PaginationTopHeadlineActivity.getStartIntent(this@MainActivity)))
     }
 }

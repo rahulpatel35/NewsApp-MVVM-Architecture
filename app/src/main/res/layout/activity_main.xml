@@ -7,14 +7,102 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Top Headlines -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTopHeadlines"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shape_button"
         android:onClick="startTopHeadlinesActivity"
-        android:text="Top Headline"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/top_headline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <!-- Offline -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOffline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+        android:onClick="startOfflineTopHeadlinesActivity"
+        android:text="@string/offline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnTopHeadlines"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <!-- pagination -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPagination"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+        android:onClick="startTopHeadlinesPaginationActivity"
+        android:text="@string/top_headline_pagination"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnOffline"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <!-- News Sources -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnNewsSources"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+        android:onClick="startTopHeadlinesActivity"
+        android:text="@string/news_sources"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPagination"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <!-- Country Selection -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCountrySelection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+        android:onClick="startTopHeadlinesActivity"
+        android:text="@string/country_selection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnNewsSources"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <!-- Language Selection -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLanguageSelection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+        android:onClick="startTopHeadlinesActivity"
+        android:text="@string/language_selection"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCountrySelection"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <!-- Search -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/shape_button"
+        android:onClick="startTopHeadlinesActivity"
+        android:text="@string/search_screen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLanguageSelection"
+        app:layout_constraintWidth_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

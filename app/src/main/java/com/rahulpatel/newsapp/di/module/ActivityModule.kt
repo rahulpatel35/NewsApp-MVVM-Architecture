@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rahulpatel.newsapp.data.model.repository.OfflineTopHeadlineRepository
+import com.rahulpatel.newsapp.data.model.repository.PaginationTopHeadlineRepository
 import com.rahulpatel.newsapp.data.model.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.di.ActivityContext
 import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineViewModel
+import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineAdapter
+import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineViewModel
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineViewModel
 import com.rahulpatel.newsapp.utils.DispatcherProvider
@@ -43,6 +46,8 @@ class ActivityModule(private val activity: AppCompatActivity) {
     @Provides
     fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())
 
+    @Provides
+    fun providePaginationTopHeadlineAdapter() = PaginationTopHeadlineAdapter()
 
     @Provides
     fun provideOfflineTopHeadlineViewModel(
@@ -60,4 +65,17 @@ class ActivityModule(private val activity: AppCompatActivity) {
             })[OfflineTopHeadlineViewModel::class.java]
     }
 
+    @Provides
+    fun providePaginationTopHeadLinesViewModel(
+        paginationTopHeadlineRepository: PaginationTopHeadlineRepository,
+        dispatcherProvider: DispatcherProvider
+    ): PaginationTopHeadlineViewModel {
+        return ViewModelProvider(
+            activity,
+            ViewModelProviderFactory(PaginationTopHeadlineViewModel::class) {
+                PaginationTopHeadlineViewModel(
+                    paginationTopHeadlineRepository, dispatcherProvider
+                )
+            })[PaginationTopHeadlineViewModel::class.java]
+    }
 }
