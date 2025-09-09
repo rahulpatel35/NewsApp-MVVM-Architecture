@@ -1,5 +1,6 @@
 package com.rahulpatel.newsapp.data.api
 
+import com.rahulpatel.newsapp.data.model.newssources.NewsSourcesResponse
 import com.rahulpatel.newsapp.data.model.topheadlines.TopHeadlinesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -11,4 +12,10 @@ interface NetworkService {
         @Query("page") page: Int = 1,
         @Query("pageSize") pageSize: Int = 20
     ): TopHeadlinesResponse
+
+    @GET("top-headlines/sources")
+    suspend fun getNewsSources(): NewsSourcesResponse
+
+    @GET("top-headlines")
+    suspend fun getNewsBySources(@Query("sources") sources: String): TopHeadlinesResponse
 }
