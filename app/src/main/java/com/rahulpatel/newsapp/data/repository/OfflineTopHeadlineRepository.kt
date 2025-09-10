@@ -1,4 +1,4 @@
-package com.rahulpatel.newsapp.data.model.repository
+package com.rahulpatel.newsapp.data.repository
 
 import com.rahulpatel.newsapp.data.api.NetworkService
 import com.rahulpatel.newsapp.data.local.DatabaseService

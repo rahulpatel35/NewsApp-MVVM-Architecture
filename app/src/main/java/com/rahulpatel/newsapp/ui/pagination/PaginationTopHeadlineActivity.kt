@@ -19,8 +19,9 @@ import androidx.core.net.toUri
 import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
 import com.rahulpatel.newsapp.di.module.ActivityModule
+import com.rahulpatel.newsapp.ui.BaseActivity
 
-class PaginationTopHeadlineActivity : AppCompatActivity() {
+class PaginationTopHeadlineActivity : BaseActivity() {
 
     @Inject
     lateinit var paginationTopHeadlineViewModel: PaginationTopHeadlineViewModel

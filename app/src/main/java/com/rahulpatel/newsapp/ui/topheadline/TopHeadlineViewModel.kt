@@ -3,7 +3,7 @@ package com.rahulpatel.newsapp.ui.topheadline
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rahulpatel.newsapp.data.local.entity.Article
-import com.rahulpatel.newsapp.data.model.repository.TopHeadlineRepository
+import com.rahulpatel.newsapp.data.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.data.model.topheadlines.toArticleEntity
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.utils.AppConstant

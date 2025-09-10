@@ -1,39 +1,40 @@
-package com.rahulpatel.newsapp.ui.topheadline
+package com.rahulpatel.newsapp.ui.news
 
 import android.content.Context
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.local.entity.Article
-import com.rahulpatel.newsapp.databinding.ActivityTopHeadlineBinding
+import com.rahulpatel.newsapp.databinding.ActivityNewsListBinding
 import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
 import com.rahulpatel.newsapp.di.module.ActivityModule
 import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
+import com.rahulpatel.newsapp.utils.AppConstant
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class TopHeadlineActivity : BaseActivity() {
-
-
-    @Inject
-    lateinit var topHeadlineViewModel: TopHeadlineViewModel
+class NewsListActivity : BaseActivity() {
 
     @Inject
-    lateinit var topHeadlineAdapter: TopHeadlineAdapter
+    lateinit var newsListViewModel: NewsListViewModel
 
-    private lateinit var binding: ActivityTopHeadlineBinding
+    @Inject
+    lateinit var newsListAdapter: NewsListAdapter
+
+    private lateinit var binding: ActivityNewsListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
         super.onCreate(savedInstanceState)
-        binding = ActivityTopHeadlineBinding.inflate(layoutInflater)
+        binding = ActivityNewsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
         setupObserver()
@@ -42,41 +43,25 @@ class TopHeadlineActivity : BaseActivity() {
     private fun setupUI() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = topHeadlineAdapter
+            adapter = newsListAdapter
         }
 
         binding.includeLayout.tryAgainBtn.setOnClickListener {
-            topHeadlineViewModel.startFetchingArticle()
+            getIntentData()
         }
+
+        getIntentData()
     }
 
-    private fun setupObserver() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                topHeadlineViewModel.topHeadLineUiState.collect {
-                    when (it) {
-                        is UiState.Success -> {
-                            binding.progressBar.visibility = View.GONE
-                            renderList(it.data)
-                            binding.recyclerView.visibility = View.VISIBLE
-                            binding.includeLayout.errorLayout.visibility = View.GONE
-                        }
-
-                        UiState.Loading -> {
-                            binding.apply {
-                                progressBar.visibility = View.VISIBLE
-                                binding.recyclerView.visibility = View.GONE
-                                binding.includeLayout.errorLayout.visibility = View.GONE
-                            }
-                        }
-
-                        is UiState.Error -> {
-                            binding.apply {
-                                progressBar.visibility = View.GONE
-                                binding.recyclerView.visibility = View.GONE
-                                binding.includeLayout.errorLayout.visibility = View.VISIBLE
-                                binding.includeLayout.errorDescriptionTv.text = it.toString()
-                            }
+    private fun getIntentData() {
+        intent.extras?.apply {
+            val newsType = getString(EXTRA_NEWS_TYPE)
+            newsType?.let { type ->
+                when (type) {
+                    AppConstant.NEWS_BY_SOURCES -> {
+                        val source = getString(EXTRA_NEWS_SOURCE)
+                        source?.let {
+                            newsListViewModel.fetchNewsBySources(it)
                         }
                     }
                 }
@@ -84,9 +69,43 @@ class TopHeadlineActivity : BaseActivity() {
         }
     }
 
-    private fun renderList(data: List<Article>) {
-        topHeadlineAdapter.addArticles(data)
-        topHeadlineAdapter.notifyDataSetChanged()
+    private fun setupObserver() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                newsListViewModel.newUiState.collect {
+                    when (it) {
+                        is UiState.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            renderList(it.data)
+                            binding.recyclerView.visibility = View.VISIBLE
+                            binding.includeLayout.errorLayout.visibility = View.GONE
+
+                        }
+
+                        is UiState.Loading -> {
+                            binding.apply {
+                                progressBar.visibility = View.VISIBLE
+                                recyclerView.visibility = View.GONE
+                                binding.includeLayout.errorLayout.visibility = View.GONE
+                            }
+                        }
+
+                        is UiState.Error -> {
+                            binding.progressBar.visibility = View.GONE
+                            binding.includeLayout.errorLayout.visibility = View.VISIBLE
+                            Toast.makeText(this@NewsListActivity, it.message, Toast.LENGTH_LONG)
+                                .show()
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    private fun renderList(articleList: List<Article>) {
+        newsListAdapter.addArticles(articleList)
+        newsListAdapter.notifyDataSetChanged()
     }
 
     private fun injectDependencies() {
@@ -96,9 +115,19 @@ class TopHeadlineActivity : BaseActivity() {
     }
 
     companion object {
-        fun getStartIntent(context: Context): Intent {
-            return Intent(context, TopHeadlineActivity::class.java)
+
+        private const val EXTRA_NEWS_SOURCE = "EXTRA_NEWS_SOURCE"
+        private const val EXTRA_NEWS_TYPE = "EXTRA_NEWS_TYPE"
+
+        fun getStartIntent(
+            context: Context,
+            newsSource: String? = "",
+            newsType: String
+        ): Intent {
+            return Intent(context, NewsListActivity::class.java).apply {
+                putExtra(EXTRA_NEWS_TYPE, newsType)
+                putExtra(EXTRA_NEWS_SOURCE, newsSource)
+            }
         }
     }
-
 }

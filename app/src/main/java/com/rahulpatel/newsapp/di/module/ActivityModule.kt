@@ -3,14 +3,18 @@ package com.rahulpatel.newsapp.di.module
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.rahulpatel.newsapp.data.model.repository.OfflineTopHeadlineRepository
-import com.rahulpatel.newsapp.data.model.repository.PaginationTopHeadlineRepository
-import com.rahulpatel.newsapp.data.model.repository.TopHeadlineRepository
+import com.rahulpatel.newsapp.data.repository.NewsRepository
+import com.rahulpatel.newsapp.data.repository.OfflineTopHeadlineRepository
+import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
+import com.rahulpatel.newsapp.data.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.di.ActivityContext
 import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
+import com.rahulpatel.newsapp.ui.news.NewsListAdapter
+import com.rahulpatel.newsapp.ui.news.NewsListViewModel
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineViewModel
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineAdapter
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineViewModel
+import com.rahulpatel.newsapp.ui.sources.NewsSourceAdapter
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineViewModel
 import com.rahulpatel.newsapp.utils.DispatcherProvider
@@ -57,8 +61,7 @@ class ActivityModule(private val activity: AppCompatActivity) {
         logger: Logger
     ): OfflineTopHeadlineViewModel {
         return ViewModelProvider(
-            activity,
-            ViewModelProviderFactory(OfflineTopHeadlineViewModel::class) {
+            activity, ViewModelProviderFactory(OfflineTopHeadlineViewModel::class) {
                 OfflineTopHeadlineViewModel(
                     offlineTopHeadlineRepository, dispatcherProvider, networkHelper, logger
                 )
@@ -71,11 +74,30 @@ class ActivityModule(private val activity: AppCompatActivity) {
         dispatcherProvider: DispatcherProvider
     ): PaginationTopHeadlineViewModel {
         return ViewModelProvider(
-            activity,
-            ViewModelProviderFactory(PaginationTopHeadlineViewModel::class) {
+            activity, ViewModelProviderFactory(PaginationTopHeadlineViewModel::class) {
                 PaginationTopHeadlineViewModel(
                     paginationTopHeadlineRepository, dispatcherProvider
                 )
             })[PaginationTopHeadlineViewModel::class.java]
     }
+
+
+    @Provides
+    fun provideNewsViewModel(
+        newsRepository: NewsRepository,
+        logger: Logger,
+        networkHelper: NetworkHelper,
+        dispatcherProvider: DispatcherProvider
+    ): NewsListViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(NewsListViewModel::class) {
+            NewsListViewModel(newsRepository, logger, dispatcherProvider, networkHelper)
+        })[NewsListViewModel::class.java]
+    }
+
+    @Provides
+    fun provideNewsSourceAdapter() = NewsSourceAdapter(ArrayList())
+
+    @Provides
+    fun provideNewsAdapter() = NewsListAdapter(ArrayList())
+
 }

@@ -1,39 +1,41 @@
-package com.rahulpatel.newsapp.ui.topheadline
+package com.rahulpatel.newsapp.ui.sources
 
 import android.content.Context
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahulpatel.newsapp.NewsApplication
-import com.rahulpatel.newsapp.data.local.entity.Article
-import com.rahulpatel.newsapp.databinding.ActivityTopHeadlineBinding
+import com.rahulpatel.newsapp.data.local.entity.NewsSources
+import com.rahulpatel.newsapp.databinding.ActivityNewsSourcesBinding
 import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
 import com.rahulpatel.newsapp.di.module.ActivityModule
 import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
+import com.rahulpatel.newsapp.ui.news.NewsListActivity
+import com.rahulpatel.newsapp.utils.AppConstant
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class TopHeadlineActivity : BaseActivity() {
-
-
-    @Inject
-    lateinit var topHeadlineViewModel: TopHeadlineViewModel
+class NewsSourcesActivity : BaseActivity() {
 
     @Inject
-    lateinit var topHeadlineAdapter: TopHeadlineAdapter
+    lateinit var newsSourcesViewModel: NewsSourcesViewModel
 
-    private lateinit var binding: ActivityTopHeadlineBinding
+    @Inject
+    lateinit var newsSourceAdapter: NewsSourceAdapter
+
+    private lateinit var binding: ActivityNewsSourcesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         injectDependencies()
         super.onCreate(savedInstanceState)
-        binding = ActivityTopHeadlineBinding.inflate(layoutInflater)
+        binding = ActivityNewsSourcesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
         setupObserver()
@@ -42,18 +44,29 @@ class TopHeadlineActivity : BaseActivity() {
     private fun setupUI() {
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            adapter = topHeadlineAdapter
+            adapter = newsSourceAdapter
         }
 
         binding.includeLayout.tryAgainBtn.setOnClickListener {
-            topHeadlineViewModel.startFetchingArticle()
+            newsSourcesViewModel.startFetchingSource()
+        }
+
+        newsSourceAdapter.itemClickListener = { _, newsSource ->
+            val sources = newsSource as NewsSources
+            startActivity(
+                NewsListActivity.getStartIntent(
+                    context = this@NewsSourcesActivity,
+                    newsSource = sources.sourceId,
+                    newsType = AppConstant.NEWS_BY_SOURCES
+                )
+            )
         }
     }
 
     private fun setupObserver() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                topHeadlineViewModel.topHeadLineUiState.collect {
+                newsSourcesViewModel.newsSourceUiState.collect {
                     when (it) {
                         is UiState.Success -> {
                             binding.progressBar.visibility = View.GONE
@@ -62,21 +75,19 @@ class TopHeadlineActivity : BaseActivity() {
                             binding.includeLayout.errorLayout.visibility = View.GONE
                         }
 
-                        UiState.Loading -> {
+                        is UiState.Loading -> {
                             binding.apply {
                                 progressBar.visibility = View.VISIBLE
-                                binding.recyclerView.visibility = View.GONE
+                                recyclerView.visibility = View.GONE
                                 binding.includeLayout.errorLayout.visibility = View.GONE
                             }
                         }
 
                         is UiState.Error -> {
-                            binding.apply {
-                                progressBar.visibility = View.GONE
-                                binding.recyclerView.visibility = View.GONE
-                                binding.includeLayout.errorLayout.visibility = View.VISIBLE
-                                binding.includeLayout.errorDescriptionTv.text = it.toString()
-                            }
+                            binding.progressBar.visibility = View.VISIBLE
+                            binding.includeLayout.errorLayout.visibility = View.VISIBLE
+                            Toast.makeText(this@NewsSourcesActivity, it.message, Toast.LENGTH_LONG)
+                                .show()
                         }
                     }
                 }
@@ -84,9 +95,9 @@ class TopHeadlineActivity : BaseActivity() {
         }
     }
 
-    private fun renderList(data: List<Article>) {
-        topHeadlineAdapter.addArticles(data)
-        topHeadlineAdapter.notifyDataSetChanged()
+    private fun renderList(sourceList: List<NewsSources>) {
+        newsSourceAdapter.addSources(sourceList)
+        newsSourceAdapter.notifyDataSetChanged()
     }
 
     private fun injectDependencies() {
@@ -97,7 +108,7 @@ class TopHeadlineActivity : BaseActivity() {
 
     companion object {
         fun getStartIntent(context: Context): Intent {
-            return Intent(context, TopHeadlineActivity::class.java)
+            return Intent(context, NewsSourcesActivity::class.java)
         }
     }
 

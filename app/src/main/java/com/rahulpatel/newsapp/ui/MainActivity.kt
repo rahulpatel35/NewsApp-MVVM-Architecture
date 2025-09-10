@@ -10,20 +10,22 @@ import androidx.core.view.WindowInsetsCompat
 import com.rahulpatel.newsapp.databinding.ActivityMainBinding
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.rahulpatel.newsapp.ui.sources.NewsSourcesActivity
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        enableEdgeToEdge()
+        applyEdgeToEdge(binding.main)
+        /*enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
+        }*/
         setContentView(binding.root)
     }
 
@@ -37,5 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     fun startTopHeadlinesPaginationActivity(view: View) {
         startActivity(Intent(PaginationTopHeadlineActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startNewsSourcesActivity(view: View) {
+        startActivity(Intent(NewsSourcesActivity.getStartIntent(this@MainActivity)))
     }
 }

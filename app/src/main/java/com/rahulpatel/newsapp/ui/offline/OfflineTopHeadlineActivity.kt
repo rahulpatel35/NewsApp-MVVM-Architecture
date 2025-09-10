@@ -15,12 +15,13 @@ import com.rahulpatel.newsapp.data.local.entity.Article
 import com.rahulpatel.newsapp.databinding.ActivityOfflineTopHeadlineBinding
 import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
 import com.rahulpatel.newsapp.di.module.ActivityModule
+import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class OfflineTopHeadlineActivity : AppCompatActivity() {
+class OfflineTopHeadlineActivity : BaseActivity() {
 
     @Inject
     lateinit var offlineTopHeadlineViewModel: OfflineTopHeadlineViewModel

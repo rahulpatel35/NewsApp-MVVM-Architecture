@@ -3,7 +3,7 @@ package com.rahulpatel.newsapp.ui.pagination
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import com.rahulpatel.newsapp.data.model.repository.PaginationTopHeadlineRepository
+import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
 import com.rahulpatel.newsapp.data.model.topheadlines.ApiArticle
 import com.rahulpatel.newsapp.utils.DispatcherProvider
 import kotlinx.coroutines.flow.MutableStateFlow

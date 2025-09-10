@@ -1,4 +1,4 @@
-package com.rahulpatel.newsapp.data.model.repository
+package com.rahulpatel.newsapp.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
