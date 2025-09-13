@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.rahulpatel.newsapp.databinding.ActivityMainBinding
+import com.rahulpatel.newsapp.ui.country.CountryListActivity
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineActivity
 import com.rahulpatel.newsapp.ui.sources.NewsSourcesActivity
@@ -43,5 +44,9 @@ class MainActivity : BaseActivity() {
 
     fun startNewsSourcesActivity(view: View) {
         startActivity(Intent(NewsSourcesActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startCountryListActivity(view: View) {
+        startActivity(Intent(CountryListActivity.getStartIntent(this@MainActivity)))
     }
 }

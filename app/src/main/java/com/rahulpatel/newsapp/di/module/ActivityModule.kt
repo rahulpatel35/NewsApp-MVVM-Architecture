@@ -3,12 +3,14 @@ package com.rahulpatel.newsapp.di.module
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.rahulpatel.newsapp.data.repository.CountryListRepository
 import com.rahulpatel.newsapp.data.repository.NewsRepository
 import com.rahulpatel.newsapp.data.repository.OfflineTopHeadlineRepository
 import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
 import com.rahulpatel.newsapp.data.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.di.ActivityContext
 import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
+import com.rahulpatel.newsapp.ui.country.CountryListViewModel
 import com.rahulpatel.newsapp.ui.news.NewsListAdapter
 import com.rahulpatel.newsapp.ui.news.NewsListViewModel
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineViewModel
@@ -99,5 +101,15 @@ class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     fun provideNewsAdapter() = NewsListAdapter(ArrayList())
+
+    @Provides
+    fun provideCountryListViewModel(
+        countryListRepository: CountryListRepository,
+        dispatcherProvider: DispatcherProvider
+    ): CountryListViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(CountryListViewModel::class) {
+            CountryListViewModel(countryListRepository, dispatcherProvider)
+        })[CountryListViewModel::class.java]
+    }
 
 }

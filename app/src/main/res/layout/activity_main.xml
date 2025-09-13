@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/shape_button"
-        android:onClick="startTopHeadlinesActivity"
+        android:onClick="startCountryListActivity"
         android:text="@string/country_selection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
