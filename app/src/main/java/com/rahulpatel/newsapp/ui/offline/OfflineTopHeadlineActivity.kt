@@ -35,6 +35,7 @@ class OfflineTopHeadlineActivity : BaseActivity() {
         injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityOfflineTopHeadlineBinding.inflate(layoutInflater)
+        applyEdgeToEdge(binding.main)
         setContentView(binding.root)
         setupUI()
         setupObserver()

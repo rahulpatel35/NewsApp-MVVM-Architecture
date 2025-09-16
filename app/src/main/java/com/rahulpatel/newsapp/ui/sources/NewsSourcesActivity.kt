@@ -36,6 +36,7 @@ class NewsSourcesActivity : BaseActivity() {
         injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityNewsSourcesBinding.inflate(layoutInflater)
+        applyEdgeToEdge(binding.root)
         setContentView(binding.root)
         setupUI()
         setupObserver()

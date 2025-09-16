@@ -10,6 +10,7 @@ import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
 import com.rahulpatel.newsapp.data.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.di.ActivityContext
 import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
+import com.rahulpatel.newsapp.ui.country.CountryListAdapter
 import com.rahulpatel.newsapp.ui.country.CountryListViewModel
 import com.rahulpatel.newsapp.ui.news.NewsListAdapter
 import com.rahulpatel.newsapp.ui.news.NewsListViewModel
@@ -111,5 +112,9 @@ class ActivityModule(private val activity: AppCompatActivity) {
             CountryListViewModel(countryListRepository, dispatcherProvider)
         })[CountryListViewModel::class.java]
     }
+
+    @Provides
+    fun provideCountryListAdapter() = CountryListAdapter(ArrayList())
+
 
 }

@@ -35,6 +35,7 @@ class PaginationTopHeadlineActivity : BaseActivity() {
         injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityPaginationTopHeadlineBinding.inflate(layoutInflater)
+        applyEdgeToEdge(binding.root)
         setContentView(binding.root)
         setupUI()
         setupObserver()

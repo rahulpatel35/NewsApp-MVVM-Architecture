@@ -35,6 +35,8 @@ class NewsListActivity : BaseActivity() {
         injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityNewsListBinding.inflate(layoutInflater)
+
+        applyEdgeToEdge(binding.root)
         setContentView(binding.root)
         setupUI()
         setupObserver()
@@ -64,7 +66,15 @@ class NewsListActivity : BaseActivity() {
                             newsListViewModel.fetchNewsBySources(it)
                         }
                     }
+
+                    AppConstant.NEWS_BY_COUNTRY -> {
+                        val countryId = getString(EXTRA_COUNTRY_ID)
+                        countryId?.let {
+                            newsListViewModel.fetchNewsByCountry(it)
+                        }
+                    }
                 }
+
             }
         }
     }

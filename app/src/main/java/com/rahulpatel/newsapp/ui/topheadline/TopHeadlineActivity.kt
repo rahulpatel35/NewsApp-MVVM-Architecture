@@ -34,6 +34,7 @@ class TopHeadlineActivity : BaseActivity() {
         injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityTopHeadlineBinding.inflate(layoutInflater)
+        applyEdgeToEdge(binding.root)
         setContentView(binding.root)
         setupUI()
         setupObserver()
