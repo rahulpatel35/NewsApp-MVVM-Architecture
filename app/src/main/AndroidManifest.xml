@@ -54,6 +54,15 @@
         <activity
             android:name=".ui.country.CountryListActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.language.LanguageListActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

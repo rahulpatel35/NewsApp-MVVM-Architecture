@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/shape_button"
-        android:onClick="startTopHeadlinesActivity"
+        android:onClick="startLanguageListActivity"
         android:text="@string/language_selection"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -20,12 +20,12 @@ class NewsSourceRepository @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getNewsSources(): Flow<List<NewsSources>> {
         return flow { emit(networkService.getNewsSources()) }.map {
-                it.newsSource.map { apiSource -> apiSource.asSource() }
-            }.flatMapConcat { apiSource ->
-                flow { emit(databaseService.deleteAndInsertAllNewsSources((apiSource))) }
-            }.flatMapConcat {
-                databaseService.getNewsSources()
-            }
+            it.newsSource.map { apiSource -> apiSource.asSource() }
+        }.flatMapConcat { apiSource ->
+            flow { emit(databaseService.deleteAndInsertAllNewsSources((apiSource))) }
+        }.flatMapConcat {
+            databaseService.getNewsSources()
+        }
     }
 
     fun getNewsSourcesFromDB(): Flow<List<NewsSources>> {

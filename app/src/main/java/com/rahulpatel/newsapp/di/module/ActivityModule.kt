@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.rahulpatel.newsapp.data.repository.CountryListRepository
+import com.rahulpatel.newsapp.data.repository.LanguageListRepository
 import com.rahulpatel.newsapp.data.repository.NewsRepository
 import com.rahulpatel.newsapp.data.repository.OfflineTopHeadlineRepository
 import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
@@ -12,6 +13,8 @@ import com.rahulpatel.newsapp.di.ActivityContext
 import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
 import com.rahulpatel.newsapp.ui.country.CountryListAdapter
 import com.rahulpatel.newsapp.ui.country.CountryListViewModel
+import com.rahulpatel.newsapp.ui.language.LanguageListAdapter
+import com.rahulpatel.newsapp.ui.language.LanguageListViewModel
 import com.rahulpatel.newsapp.ui.news.NewsListAdapter
 import com.rahulpatel.newsapp.ui.news.NewsListViewModel
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineViewModel
@@ -115,6 +118,21 @@ class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     fun provideCountryListAdapter() = CountryListAdapter(ArrayList())
+
+    @Provides
+    fun provideLanguageAdapter() = LanguageListAdapter(ArrayList())
+
+    @Provides
+    fun provideLanguageListViewModel(
+        languageRepository: LanguageListRepository,
+        dispatcherProvider: DispatcherProvider
+    ): LanguageListViewModel {
+        return ViewModelProvider(
+            activity,
+            ViewModelProviderFactory(LanguageListViewModel::class) {
+                LanguageListViewModel(languageRepository, dispatcherProvider)
+            })[LanguageListViewModel::class.java]
+    }
 
 
 }
