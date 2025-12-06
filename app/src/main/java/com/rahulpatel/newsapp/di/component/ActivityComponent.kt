@@ -6,6 +6,7 @@ import com.rahulpatel.newsapp.data.repository.NewsRepository
 import com.rahulpatel.newsapp.data.repository.NewsSourceRepository
 import com.rahulpatel.newsapp.data.repository.OfflineTopHeadlineRepository
 import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
+import com.rahulpatel.newsapp.data.repository.SearchRepository
 import com.rahulpatel.newsapp.data.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.di.ActivityScope
 import com.rahulpatel.newsapp.di.module.ActivityModule
@@ -14,6 +15,7 @@ import com.rahulpatel.newsapp.ui.language.LanguageListActivity
 import com.rahulpatel.newsapp.ui.news.NewsListActivity
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.rahulpatel.newsapp.ui.search.SearchActivity
 import com.rahulpatel.newsapp.ui.sources.NewsSourcesActivity
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineActivity
 import dagger.Component
@@ -33,8 +35,9 @@ interface ActivityComponent {
 
     fun inject(activity: CountryListActivity)
 
-
     fun inject(activity: LanguageListActivity)
+
+    fun inject(activity: SearchActivity)
 
     fun getTopHeadlineRepository(): TopHeadlineRepository
 
@@ -49,5 +52,8 @@ interface ActivityComponent {
     fun getCountryListRepository(): CountryListRepository
 
     fun getLanguageListRepository(): LanguageListRepository
+
+    fun getSearchRepository(): SearchRepository
+
 
 }

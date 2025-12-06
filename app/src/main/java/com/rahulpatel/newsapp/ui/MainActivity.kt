@@ -12,6 +12,7 @@ import com.rahulpatel.newsapp.ui.country.CountryListActivity
 import com.rahulpatel.newsapp.ui.language.LanguageListActivity
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineActivity
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineActivity
+import com.rahulpatel.newsapp.ui.search.SearchActivity
 import com.rahulpatel.newsapp.ui.sources.NewsSourcesActivity
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineActivity
 
@@ -53,5 +54,9 @@ class MainActivity : BaseActivity() {
 
     fun startLanguageListActivity(view: View) {
         startActivity(Intent(LanguageListActivity.getStartIntent(this@MainActivity)))
+    }
+
+    fun startSearchActivity(view: View) {
+        startActivity(Intent(SearchActivity.getStartIntent(this@MainActivity)))
     }
 }

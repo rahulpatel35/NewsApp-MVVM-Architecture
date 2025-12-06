@@ -8,6 +8,7 @@ import com.rahulpatel.newsapp.data.repository.LanguageListRepository
 import com.rahulpatel.newsapp.data.repository.NewsRepository
 import com.rahulpatel.newsapp.data.repository.OfflineTopHeadlineRepository
 import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
+import com.rahulpatel.newsapp.data.repository.SearchRepository
 import com.rahulpatel.newsapp.data.repository.TopHeadlineRepository
 import com.rahulpatel.newsapp.di.ActivityContext
 import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
@@ -20,6 +21,7 @@ import com.rahulpatel.newsapp.ui.news.NewsListViewModel
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineViewModel
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineAdapter
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineViewModel
+import com.rahulpatel.newsapp.ui.search.SearchViewModel
 import com.rahulpatel.newsapp.ui.sources.NewsSourceAdapter
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineViewModel
@@ -108,8 +110,7 @@ class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     fun provideCountryListViewModel(
-        countryListRepository: CountryListRepository,
-        dispatcherProvider: DispatcherProvider
+        countryListRepository: CountryListRepository, dispatcherProvider: DispatcherProvider
     ): CountryListViewModel {
         return ViewModelProvider(activity, ViewModelProviderFactory(CountryListViewModel::class) {
             CountryListViewModel(countryListRepository, dispatcherProvider)
@@ -124,14 +125,23 @@ class ActivityModule(private val activity: AppCompatActivity) {
 
     @Provides
     fun provideLanguageListViewModel(
-        languageRepository: LanguageListRepository,
-        dispatcherProvider: DispatcherProvider
+        languageRepository: LanguageListRepository, dispatcherProvider: DispatcherProvider
     ): LanguageListViewModel {
         return ViewModelProvider(
-            activity,
-            ViewModelProviderFactory(LanguageListViewModel::class) {
+            activity, ViewModelProviderFactory(LanguageListViewModel::class) {
                 LanguageListViewModel(languageRepository, dispatcherProvider)
             })[LanguageListViewModel::class.java]
+    }
+
+    @Provides
+    fun provideSearchViewModel(
+        searchRepository: SearchRepository,
+        dispatcherProvider: DispatcherProvider,
+        networkHelper: NetworkHelper
+    ): SearchViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(SearchViewModel::class) {
+            SearchViewModel(searchRepository, dispatcherProvider, networkHelper)
+        })[SearchViewModel::class.java]
     }
 
 
