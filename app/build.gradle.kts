@@ -10,6 +10,9 @@ plugins {
 
     //dagger-hilt → enables Hilt dependency injection in the project.
     alias(libs.plugins.dagger.hilt)
+
+    // Kotlin Compose → enables Jetpack Compose support in the project
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -131,6 +134,33 @@ dependencies {
     //Works with Room, Retrofit, and RecyclerView.
     //Perfect for feeds, search results, chat history, etc.
     implementation(libs.androidx.paging.runtime)
+
+
+    // compose
+
+    // Enables Jetpack Compose support inside activities (setContent {} etc.)
+    implementation(libs.androidx.activity.compose)
+    // Compose BOM — keeps all Compose libraries aligned to the same version
+    implementation(platform(libs.androidx.compose.bom))
+    // Core Jetpack Compose UI features (layout, text, buttons, etc.)
+    implementation(libs.androidx.ui)
+    // Support for drawing shapes, paths, and image rendering in Compose
+    implementation(libs.androidx.ui.graphics)
+    // Tools to preview Composables inside Android Studio without running the app
+    implementation(libs.androidx.ui.tooling.preview)
+    // Material 3 (Material You) UI components — buttons, cards, themes, typography, etc.
+    implementation(libs.androidx.material3)
+    // Image loading library optimized for Jetpack Compose
+    implementation(libs.coil.compose)
+    // Enables injecting ViewModels and navigation graph dependencies with Hilt
+    implementation(libs.androidx.hilt.navigation.compose)
+    // Navigation framework for Jetpack Compose (NavHost, composable routes, arguments, etc.)
+    implementation(libs.androidx.navigation.compose)
+    // Adds lifecycle awareness to Composables (collectAsStateWithLifecycle, repeatOnLifecycle, etc.)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    // Foundation of Compose — gestures, animations, LazyColumn, scrolling, etc.
+    implementation(libs.androidx.foundation)
+
 
 
     testImplementation(libs.junit)
