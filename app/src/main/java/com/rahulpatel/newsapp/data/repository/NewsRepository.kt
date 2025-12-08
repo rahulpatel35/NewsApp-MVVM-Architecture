@@ -5,7 +5,7 @@ import com.rahulpatel.newsapp.data.local.DatabaseService
 import com.rahulpatel.newsapp.data.local.entity.Article
 import com.rahulpatel.newsapp.data.model.topheadlines.toArticleEntity
 import com.rahulpatel.newsapp.data.model.topheadlines.toArticleLanguage
-import com.rahulpatel.newsapp.di.ActivityScope
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@ActivityScope
+//@ActivityScope
+@ViewModelScoped
 @OptIn(ExperimentalCoroutinesApi::class)
 class NewsRepository @Inject constructor(
     private val networkService: NetworkService,

@@ -7,7 +7,10 @@ import com.rahulpatel.newsapp.data.model.topheadlines.ApiArticle
 import com.rahulpatel.newsapp.utils.AppConstant.INITIAL_PAGE
 import com.rahulpatel.newsapp.utils.AppConstant.COUNTRY
 import com.rahulpatel.newsapp.utils.AppConstant.PAGE_SIZE
+import dagger.hilt.android.scopes.ViewModelScoped
 
+//@ActivityScope
+@ViewModelScoped
 class TopHeadlinePagingSource constructor(private val networkService: NetworkService) :
     PagingSource<Int, ApiArticle>() {
     override fun getRefreshKey(state: PagingState<Int, ApiArticle>): Int? {

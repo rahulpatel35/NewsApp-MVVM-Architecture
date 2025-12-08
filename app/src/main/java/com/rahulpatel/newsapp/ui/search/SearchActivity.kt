@@ -7,25 +7,25 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.local.entity.Article
 import com.rahulpatel.newsapp.databinding.ActivitySearchBinding
-import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
-import com.rahulpatel.newsapp.di.module.ActivityModule
 import com.rahulpatel.newsapp.ui.BaseActivity
-import com.rahulpatel.newsapp.ui.MainActivity
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.ui.news.NewsListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
+
 class SearchActivity : BaseActivity() {
 
-    @Inject
+    //@Inject
     lateinit var searchViewModel: SearchViewModel
 
     @Inject
@@ -35,13 +35,18 @@ class SearchActivity : BaseActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
+        //injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
         applyEdgeToEdge(binding.root)
         setContentView(binding.root)
+        setupViewModel()
         setUpUi()
         setUpObserver()
+    }
+
+    private fun setupViewModel() {
+        searchViewModel = ViewModelProvider(this)[SearchViewModel::class.java]
     }
 
     private fun setUpObserver() {
@@ -99,11 +104,11 @@ class SearchActivity : BaseActivity() {
 
     }
 
-    private fun injectDependencies() {
+    /*private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }
+    }*/
 
     private fun renderList(articleList: List<Article>) {
         newsListAdapter.addArticles(articleList)

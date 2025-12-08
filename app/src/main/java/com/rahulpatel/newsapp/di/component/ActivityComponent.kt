@@ -1,5 +1,6 @@
 package com.rahulpatel.newsapp.di.component
 
+/*
 import com.rahulpatel.newsapp.data.repository.CountryListRepository
 import com.rahulpatel.newsapp.data.repository.LanguageListRepository
 import com.rahulpatel.newsapp.data.repository.NewsRepository
@@ -56,4 +57,4 @@ interface ActivityComponent {
     fun getSearchRepository(): SearchRepository
 
 
-}
+}*/

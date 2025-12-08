@@ -10,6 +10,7 @@ import com.rahulpatel.newsapp.utils.AppConstant
 import com.rahulpatel.newsapp.utils.DispatcherProvider
 import com.rahulpatel.newsapp.utils.NetworkHelper
 import com.rahulpatel.newsapp.utils.logger.Logger
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class TopHeadlineViewModel @Inject constructor(
     private val topHeadlineRepository: TopHeadlineRepository,
     private val dispatcherProvider: DispatcherProvider,

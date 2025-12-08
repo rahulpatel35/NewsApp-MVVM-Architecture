@@ -2,28 +2,28 @@ package com.rahulpatel.newsapp.ui.news
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.local.entity.Article
 import com.rahulpatel.newsapp.databinding.ActivityNewsListBinding
-import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
-import com.rahulpatel.newsapp.di.module.ActivityModule
 import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.utils.AppConstant
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
+
 class NewsListActivity : BaseActivity() {
 
-    @Inject
+    //@Inject
     lateinit var newsListViewModel: NewsListViewModel
 
     @Inject
@@ -32,14 +32,18 @@ class NewsListActivity : BaseActivity() {
     private lateinit var binding: ActivityNewsListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
+        //injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityNewsListBinding.inflate(layoutInflater)
-
         applyEdgeToEdge(binding.root)
+        setupViewModel()
         setContentView(binding.root)
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        newsListViewModel = ViewModelProvider(this)[NewsListViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -125,11 +129,11 @@ class NewsListActivity : BaseActivity() {
         newsListAdapter.notifyDataSetChanged()
     }
 
-    private fun injectDependencies() {
+    /*private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }
+    }*/
 
     companion object {
 

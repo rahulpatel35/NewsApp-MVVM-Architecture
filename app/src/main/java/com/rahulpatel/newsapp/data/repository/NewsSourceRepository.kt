@@ -4,7 +4,7 @@ import com.rahulpatel.newsapp.data.api.NetworkService
 import com.rahulpatel.newsapp.data.local.DatabaseService
 import com.rahulpatel.newsapp.data.local.entity.NewsSources
 import com.rahulpatel.newsapp.data.model.newssources.asSource
-import com.rahulpatel.newsapp.di.ActivityScope
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapConcat
@@ -12,7 +12,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@ActivityScope
+//@ActivityScope
+@ViewModelScoped
 class NewsSourceRepository @Inject constructor(
     private val networkService: NetworkService, private val databaseService: DatabaseService
 ) {

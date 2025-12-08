@@ -6,6 +6,7 @@ import com.rahulpatel.newsapp.data.model.Country
 import com.rahulpatel.newsapp.data.repository.CountryListRepository
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.utils.DispatcherProvider
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class CountryListViewModel @Inject constructor(
     private val countryListRepository: CountryListRepository,
     private val dispatcherProvider: DispatcherProvider,

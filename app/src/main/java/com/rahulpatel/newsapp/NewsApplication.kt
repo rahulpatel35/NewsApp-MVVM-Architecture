@@ -1,6 +1,13 @@
 package com.rahulpatel.newsapp
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class NewsApplication : Application()
+
+/*
+import android.app.Application
 import com.rahulpatel.newsapp.di.component.ApplicationComponent
 import com.rahulpatel.newsapp.di.component.DaggerApplicationComponent
 import com.rahulpatel.newsapp.di.module.ApplicationModule
@@ -21,4 +28,4 @@ class NewsApplication : Application() {
             DaggerApplicationComponent.builder().applicationModule(ApplicationModule(this)).build()
         applicationComponent.inject(this)
     }
-}
+}*/

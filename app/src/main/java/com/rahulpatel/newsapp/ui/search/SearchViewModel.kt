@@ -8,6 +8,7 @@ import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.utils.AppConstant
 import com.rahulpatel.newsapp.utils.DispatcherProvider
 import com.rahulpatel.newsapp.utils.NetworkHelper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,6 +22,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository,
     private val dispatcherProvider: DispatcherProvider,

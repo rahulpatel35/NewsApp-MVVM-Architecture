@@ -1,5 +1,6 @@
 package com.rahulpatel.newsapp.di.component
 
+/*
 import android.content.Context
 import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.api.NetworkService
@@ -35,4 +36,4 @@ interface ApplicationComponent {
 
     fun getNewsAppDatabase(): NewsAppDatabase
 
-}
+}*/

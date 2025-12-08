@@ -5,26 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.model.Language
 import com.rahulpatel.newsapp.databinding.ActivityLanguageListBinding
-import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
-import com.rahulpatel.newsapp.di.module.ActivityModule
 import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.ui.news.NewsListActivity
 import com.rahulpatel.newsapp.utils.AppConstant
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class LanguageListActivity : BaseActivity() {
 
-    @Inject
+    //@Inject
     lateinit var languageListViewModel: LanguageListViewModel
 
     @Inject
@@ -34,12 +33,17 @@ class LanguageListActivity : BaseActivity() {
     private lateinit var binding: ActivityLanguageListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
+        //injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityLanguageListBinding.inflate(layoutInflater)
+        setupViewModel()
         setContentView(binding.root)
         setUpUi()
         setUpObserver()
+    }
+
+    private fun setupViewModel() {
+        languageListViewModel = ViewModelProvider(this)[LanguageListViewModel::class.java]
     }
 
     private fun setUpObserver() {
@@ -131,11 +135,11 @@ class LanguageListActivity : BaseActivity() {
         languageListAdapter.notifyDataSetChanged()
     }
 
-    private fun injectDependencies() {
+   /* private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }
+    }*/
 
     companion object {
         fun getStartIntent(context: Context): Intent {

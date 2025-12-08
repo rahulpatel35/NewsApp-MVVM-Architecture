@@ -4,13 +4,14 @@ import com.rahulpatel.newsapp.data.api.NetworkService
 import com.rahulpatel.newsapp.data.local.DatabaseService
 import com.rahulpatel.newsapp.data.local.entity.Article
 import com.rahulpatel.newsapp.data.model.topheadlines.ApiArticle
-import com.rahulpatel.newsapp.di.ActivityScope
+import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-@ActivityScope
+//@ActivityScope
+@ViewModelScoped
 class OfflineTopHeadlineRepository @Inject constructor(
     private val networkService: NetworkService,
     private val databaseService: DatabaseService

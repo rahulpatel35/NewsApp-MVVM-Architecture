@@ -1,7 +1,15 @@
 plugins {
+    //android-application → lets you build & run Android apps.
     alias(libs.plugins.android.application)
+
+    //kotlin-android → adds Kotlin support for Android development.
     alias(libs.plugins.kotlin.android)
+
+    //ksp → processes annotations faster, used for Room, Hilt, Moshi, etc.
     alias(libs.plugins.kotlin.ksp)
+
+    //dagger-hilt → enables Hilt dependency injection in the project.
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -84,14 +92,23 @@ dependencies {
 
     //Dagger2
     //dagger → Provides the DI framework.
-    implementation(libs.dagger)
+
+    //implementation(libs.dagger)
+
     //dagger-compiler → Generates code (DaggerAppComponent) behind the scenes.
     //Makes dependency management much easier and more testable.
     // Difference between kapt and ksp
     //kapt = runs Java-style annotation processors → slower, generates stubs.
     //ksp = designed for Kotlin → much faster, better incremental builds.
     //Many modern Jetpack + popular libraries (Room, Moshi, Hilt, Glide, etc.) now provide KSP-compatible artifacts.
-    ksp(libs.dagger.compiler)
+
+    //ksp(libs.dagger.compiler)
+
+    //hilt-android → Core runtime DI support for Android.
+    implementation(libs.hilt.android)
+
+    //hilt-compiler → Generates code for @Inject, @Module, @HiltViewModel, etc.
+    ksp(libs.hilt.android.compiler)
 
     // Browser
     //androidx.browser:browser → gives you Chrome Custom Tabs and better web integration.

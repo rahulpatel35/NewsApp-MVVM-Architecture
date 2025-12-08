@@ -2,28 +2,27 @@ package com.rahulpatel.newsapp.ui.pagination
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.net.toUri
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahulpatel.newsapp.data.model.topheadlines.ApiArticle
 import com.rahulpatel.newsapp.databinding.ActivityPaginationTopHeadlineBinding
+import com.rahulpatel.newsapp.ui.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import androidx.core.net.toUri
-import com.rahulpatel.newsapp.NewsApplication
-import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
-import com.rahulpatel.newsapp.di.module.ActivityModule
-import com.rahulpatel.newsapp.ui.BaseActivity
+
+@AndroidEntryPoint
 
 class PaginationTopHeadlineActivity : BaseActivity() {
 
-    @Inject
+    //@Inject
     lateinit var paginationTopHeadlineViewModel: PaginationTopHeadlineViewModel
 
     @Inject
@@ -32,13 +31,19 @@ class PaginationTopHeadlineActivity : BaseActivity() {
     private lateinit var binding: ActivityPaginationTopHeadlineBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
+        //injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityPaginationTopHeadlineBinding.inflate(layoutInflater)
         applyEdgeToEdge(binding.root)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        paginationTopHeadlineViewModel =
+            ViewModelProvider(this)[PaginationTopHeadlineViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -68,11 +73,11 @@ class PaginationTopHeadlineActivity : BaseActivity() {
 
     }
 
-    private fun injectDependencies() {
+    /*private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }
+    }*/
 
     companion object {
         fun getStartIntent(context: Context): Intent {

@@ -4,25 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.local.entity.Article
 import com.rahulpatel.newsapp.databinding.ActivityTopHeadlineBinding
-import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
-import com.rahulpatel.newsapp.di.module.ActivityModule
 import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class TopHeadlineActivity : BaseActivity() {
 
 
-    @Inject
+    //@Inject
     lateinit var topHeadlineViewModel: TopHeadlineViewModel
 
     @Inject
@@ -31,13 +30,18 @@ class TopHeadlineActivity : BaseActivity() {
     private lateinit var binding: ActivityTopHeadlineBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
+        //injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityTopHeadlineBinding.inflate(layoutInflater)
         applyEdgeToEdge(binding.root)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        topHeadlineViewModel = ViewModelProvider(this)[TopHeadlineViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -90,11 +94,11 @@ class TopHeadlineActivity : BaseActivity() {
         topHeadlineAdapter.notifyDataSetChanged()
     }
 
-    private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
-    }
+    /* private fun injectDependencies() {
+         DaggerActivityComponent.builder()
+             .applicationComponent((application as NewsApplication).applicationComponent)
+             .activityModule(ActivityModule(this)).build().inject(this)
+     }*/
 
     companion object {
         fun getStartIntent(context: Context): Intent {

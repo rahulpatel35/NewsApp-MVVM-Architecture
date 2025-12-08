@@ -1,6 +1,7 @@
 package com.rahulpatel.newsapp.ui.base
 
 
+/*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Singleton
@@ -19,4 +20,4 @@ class ViewModelProviderFactory<T : ViewModel>(
         throw IllegalArgumentException("Unknown class name")
     }
 
-}
+}*/

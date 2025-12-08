@@ -5,25 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rahulpatel.newsapp.NewsApplication
 import com.rahulpatel.newsapp.data.local.entity.Article
 import com.rahulpatel.newsapp.databinding.ActivityOfflineTopHeadlineBinding
-import com.rahulpatel.newsapp.di.component.DaggerActivityComponent
-import com.rahulpatel.newsapp.di.module.ActivityModule
 import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class OfflineTopHeadlineActivity : BaseActivity() {
 
-    @Inject
+    //@Inject
     lateinit var offlineTopHeadlineViewModel: OfflineTopHeadlineViewModel
 
     @Inject
@@ -32,13 +32,19 @@ class OfflineTopHeadlineActivity : BaseActivity() {
     private lateinit var binding: ActivityOfflineTopHeadlineBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDependencies()
+        //injectDependencies()
         super.onCreate(savedInstanceState)
         binding = ActivityOfflineTopHeadlineBinding.inflate(layoutInflater)
         applyEdgeToEdge(binding.main)
         setContentView(binding.root)
+        setupViewModel()
         setupUI()
         setupObserver()
+    }
+
+    private fun setupViewModel() {
+        offlineTopHeadlineViewModel =
+            ViewModelProvider(this)[OfflineTopHeadlineViewModel::class.java]
     }
 
     private fun setupUI() {
@@ -92,11 +98,11 @@ class OfflineTopHeadlineActivity : BaseActivity() {
         topHeadlineAdapter.notifyDataSetChanged()
     }
 
-    private fun injectDependencies() {
+    /*private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }
+    }*/
 
     companion object {
         fun getStartIntent(context: Context): Intent {

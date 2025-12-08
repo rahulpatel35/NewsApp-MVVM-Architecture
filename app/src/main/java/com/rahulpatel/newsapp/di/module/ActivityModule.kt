@@ -1,38 +1,40 @@
 package com.rahulpatel.newsapp.di.module
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.rahulpatel.newsapp.data.repository.CountryListRepository
-import com.rahulpatel.newsapp.data.repository.LanguageListRepository
-import com.rahulpatel.newsapp.data.repository.NewsRepository
-import com.rahulpatel.newsapp.data.repository.OfflineTopHeadlineRepository
-import com.rahulpatel.newsapp.data.repository.PaginationTopHeadlineRepository
-import com.rahulpatel.newsapp.data.repository.SearchRepository
-import com.rahulpatel.newsapp.data.repository.TopHeadlineRepository
-import com.rahulpatel.newsapp.di.ActivityContext
-import com.rahulpatel.newsapp.ui.base.ViewModelProviderFactory
 import com.rahulpatel.newsapp.ui.country.CountryListAdapter
-import com.rahulpatel.newsapp.ui.country.CountryListViewModel
 import com.rahulpatel.newsapp.ui.language.LanguageListAdapter
-import com.rahulpatel.newsapp.ui.language.LanguageListViewModel
 import com.rahulpatel.newsapp.ui.news.NewsListAdapter
-import com.rahulpatel.newsapp.ui.news.NewsListViewModel
-import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineViewModel
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineAdapter
-import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineViewModel
-import com.rahulpatel.newsapp.ui.search.SearchViewModel
 import com.rahulpatel.newsapp.ui.sources.NewsSourceAdapter
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
-import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineViewModel
-import com.rahulpatel.newsapp.utils.DispatcherProvider
-import com.rahulpatel.newsapp.utils.NetworkHelper
-import com.rahulpatel.newsapp.utils.logger.Logger
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 
 
 @Module
+@InstallIn(ActivityComponent::class)
+class ActivityModule {
+
+    @Provides
+    fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())
+
+    @Provides
+    fun providePaginationTopHeadlineAdapter() = PaginationTopHeadlineAdapter()
+
+    @Provides
+    fun provideNewsSourceAdapter() = NewsSourceAdapter(ArrayList())
+
+    @Provides
+    fun provideNewsAdapter() = NewsListAdapter(ArrayList())
+
+    @Provides
+    fun provideCountryListAdapter() = CountryListAdapter(ArrayList())
+
+    @Provides
+    fun provideLanguageAdapter() = LanguageListAdapter(ArrayList())
+}
+/*
 class ActivityModule(private val activity: AppCompatActivity) {
 
     @ActivityContext
@@ -145,4 +147,4 @@ class ActivityModule(private val activity: AppCompatActivity) {
     }
 
 
-}
+}*/
