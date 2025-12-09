@@ -1,4 +1,4 @@
-package com.rahulpatel.newsapp.ui.topheadline
+package com.rahulpatel.newsapp.ui.offline
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -15,25 +15,26 @@ import com.rahulpatel.newsapp.ui.base.ShowLoading
 import com.rahulpatel.newsapp.ui.base.UiState
 
 @Composable
-fun TopHeadLineRoute(
-    onNewsClick: (url: String) -> Unit,
-    topHeadLineViewModel: TopHeadlineViewModel = hiltViewModel()
+fun OfflineTopHeadlineRoute(
+    onNewsClick: (uri: String) -> Unit,
+    offlineTopHeadlineViewModel: OfflineTopHeadlineViewModel = hiltViewModel()
 ) {
-    val topHeadLineUiState: UiState<List<Article>> by topHeadLineViewModel.topHeadLineUiState.collectAsStateWithLifecycle()
+    val offlineTopHeadlineUiState: UiState<List<Article>> by offlineTopHeadlineViewModel.topHeadlineUiState.collectAsStateWithLifecycle()
     Column(modifier = Modifier.padding(4.dp)) {
-        TopHeadlineScreen(topHeadLineUiState, onNewsClick, onRetryClick = {
-            topHeadLineViewModel.startFetchingArticle()
+        OfflineTopHeadlineScreen(offlineTopHeadlineUiState, onNewsClick, onRetryClick = {
+            offlineTopHeadlineViewModel.startFetchingArticles()
         })
     }
 }
 
 @Composable
-fun TopHeadlineScreen(
+fun OfflineTopHeadlineScreen(
     uiState: UiState<List<Article>>,
     onNewsClick: (String) -> Unit,
     onRetryClick: () -> Unit
 ) {
     when (uiState) {
+
         is UiState.Success -> {
             ArticleList(uiState.data, onNewsClick)
         }

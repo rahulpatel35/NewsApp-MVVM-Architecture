@@ -5,7 +5,6 @@ import com.rahulpatel.newsapp.ui.language.LanguageListAdapter
 import com.rahulpatel.newsapp.ui.news.NewsListAdapter
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineAdapter
 import com.rahulpatel.newsapp.ui.sources.NewsSourceAdapter
-import com.rahulpatel.newsapp.ui.topheadline.TopHeadlineAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +15,8 @@ import dagger.hilt.android.components.ActivityComponent
 @InstallIn(ActivityComponent::class)
 class ActivityModule {
 
-    @Provides
-    fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())
+    /*@Provides
+    fun provideTopHeadlineAdapter() = TopHeadlineAdapter(ArrayList())*/
 
     @Provides
     fun providePaginationTopHeadlineAdapter() = PaginationTopHeadlineAdapter()

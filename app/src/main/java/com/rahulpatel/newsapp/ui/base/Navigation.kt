@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.rahulpatel.newsapp.ui.home.HomeScreenRoute
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadLineRoute
 import androidx.core.net.toUri
+import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineRoute
 
 sealed class Route(val name: String) {
     object HomeScreen : Route("homescreen")
@@ -43,6 +44,13 @@ fun NewsNavHost() {
                 openCustomChromeTab(context, it)
             })
         }
+
+        composable(route = Route.OfflineTopHeadline.name) {
+            OfflineTopHeadlineRoute(onNewsClick = {
+                openCustomChromeTab(context, it)
+            })
+        }
+
     }
 }
 

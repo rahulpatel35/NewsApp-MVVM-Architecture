@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-@AndroidEntryPoint
+/*@AndroidEntryPoint
 class OfflineTopHeadlineActivity : BaseActivity() {
 
     //@Inject
@@ -98,15 +98,16 @@ class OfflineTopHeadlineActivity : BaseActivity() {
         topHeadlineAdapter.notifyDataSetChanged()
     }
 
-    /*private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
-    }*/
-
     companion object {
         fun getStartIntent(context: Context): Intent {
             return Intent(context, OfflineTopHeadlineActivity::class.java)
         }
     }
-}
+
+}*/
+
+/*private fun injectDependencies() {
+        DaggerActivityComponent.builder()
+            .applicationComponent((application as NewsApplication).applicationComponent)
+            .activityModule(ActivityModule(this)).build().inject(this)
+    }*/
