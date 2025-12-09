@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@AndroidEntryPoint
+/*@AndroidEntryPoint
 class TopHeadlineActivity : BaseActivity() {
 
 
@@ -94,11 +94,6 @@ class TopHeadlineActivity : BaseActivity() {
         topHeadlineAdapter.notifyDataSetChanged()
     }
 
-    /* private fun injectDependencies() {
-         DaggerActivityComponent.builder()
-             .applicationComponent((application as NewsApplication).applicationComponent)
-             .activityModule(ActivityModule(this)).build().inject(this)
-     }*/
 
     companion object {
         fun getStartIntent(context: Context): Intent {
@@ -106,4 +101,8 @@ class TopHeadlineActivity : BaseActivity() {
         }
     }
 
-}
+}*//* private fun injectDependencies() {
+         DaggerActivityComponent.builder()
+             .applicationComponent((application as NewsApplication).applicationComponent)
+             .activityModule(ActivityModule(this)).build().inject(this)
+     }*/

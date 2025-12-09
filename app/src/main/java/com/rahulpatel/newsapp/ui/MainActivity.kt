@@ -17,9 +17,10 @@ import com.rahulpatel.newsapp.ui.base.NewsNavHost
 import com.rahulpatel.newsapp.ui.theme.NewsAppTheme
 import com.rahulpatel.newsapp.ui.theme.gray40
 import com.rahulpatel.newsapp.utils.AppConstant
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity() {
-    //private lateinit var binding: ActivityMainBinding
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +47,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
-        /*binding = ActivityMainBinding.inflate(layoutInflater)
-        applyEdgeToEdge(binding.root)
-        setContentView(binding.root)*/
     }
-
 }
 
 /*fun startTopHeadlinesActivity(view: View) {

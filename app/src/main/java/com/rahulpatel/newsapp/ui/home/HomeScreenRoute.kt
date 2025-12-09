@@ -50,9 +50,17 @@ fun HomeScreen(navController: NavController) {
     ) {
         TitleButton(stringResource(R.string.top_headlines), navController, Route.TopHeadline.name)
 
-        TitleButton(stringResource(R.string.offline_top_headlines), navController, Route.OfflineTopHeadline.name)
+        TitleButton(
+            stringResource(R.string.offline_top_headlines),
+            navController,
+            Route.OfflineTopHeadline.name
+        )
 
-        TitleButton(stringResource(R.string.pagination_top_headlines), navController, Route.PaginationTopHeadline.name)
+        TitleButton(
+            stringResource(R.string.pagination_top_headlines),
+            navController,
+            Route.PaginationTopHeadline.name
+        )
 
         TitleButton(stringResource(R.string.news_sources), navController, Route.NewsSources.name)
 
