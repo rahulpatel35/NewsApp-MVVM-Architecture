@@ -134,6 +134,7 @@ dependencies {
     //Works with Room, Retrofit, and RecyclerView.
     //Perfect for feeds, search results, chat history, etc.
     implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
 
 
     // compose

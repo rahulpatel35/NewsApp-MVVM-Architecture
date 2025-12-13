@@ -1,6 +1,6 @@
 package com.rahulpatel.newsapp.ui.pagination
 
-import android.content.Context
+/*import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -73,15 +73,17 @@ class PaginationTopHeadlineActivity : BaseActivity() {
 
     }
 
-    /*private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
-    }*/
+
 
     companion object {
         fun getStartIntent(context: Context): Intent {
             return Intent(context, PaginationTopHeadlineActivity::class.java)
         }
     }
-}
+
+
+}*/  /*private fun injectDependencies() {
+      DaggerActivityComponent.builder()
+          .applicationComponent((application as NewsApplication).applicationComponent)
+          .activityModule(ActivityModule(this)).build().inject(this)
+  }*/

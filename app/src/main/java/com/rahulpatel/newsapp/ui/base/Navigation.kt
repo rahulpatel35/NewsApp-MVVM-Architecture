@@ -12,6 +12,7 @@ import com.rahulpatel.newsapp.ui.home.HomeScreenRoute
 import com.rahulpatel.newsapp.ui.topheadline.TopHeadLineRoute
 import androidx.core.net.toUri
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineRoute
+import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineRoute
 
 sealed class Route(val name: String) {
     object HomeScreen : Route("homescreen")
@@ -51,6 +52,11 @@ fun NewsNavHost() {
             })
         }
 
+        composable(route = Route.PaginationTopHeadline.name) {
+            PaginationTopHeadlineRoute(onNewsClick = {
+                openCustomChromeTab(context, it)
+            })
+        }
     }
 }
 

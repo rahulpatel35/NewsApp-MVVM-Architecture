@@ -35,13 +35,13 @@
             android:name=".ui.offline.OfflineTopHeadlineActivity"
             android:exported="false" />-->
 
-        <activity
+        <!--<activity
             android:name=".ui.pagination.PaginationTopHeadlineActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
+        </activity>-->
 
         <activity
             android:name=".ui.sources.NewsSourcesActivity"

@@ -11,6 +11,7 @@ import com.rahulpatel.newsapp.utils.DispatcherProvider
 import com.rahulpatel.newsapp.utils.NetworkHelper
 import com.rahulpatel.newsapp.utils.logger.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -44,6 +45,7 @@ class OfflineTopHeadlineViewModel @Inject constructor(
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun fetchArticles() {
         viewModelScope.launch(dispatcherProvider.main) {
             topHeadlineRepository.getTopHeadlinesArticles(AppConstant.COUNTRY)

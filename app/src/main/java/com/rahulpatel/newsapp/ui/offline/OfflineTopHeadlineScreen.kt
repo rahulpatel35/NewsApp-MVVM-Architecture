@@ -19,7 +19,8 @@ fun OfflineTopHeadlineRoute(
     onNewsClick: (uri: String) -> Unit,
     offlineTopHeadlineViewModel: OfflineTopHeadlineViewModel = hiltViewModel()
 ) {
-    val offlineTopHeadlineUiState: UiState<List<Article>> by offlineTopHeadlineViewModel.topHeadlineUiState.collectAsStateWithLifecycle()
+    val offlineTopHeadlineUiState: UiState<List<Article>> by
+    offlineTopHeadlineViewModel.topHeadlineUiState.collectAsStateWithLifecycle()
     Column(modifier = Modifier.padding(4.dp)) {
         OfflineTopHeadlineScreen(offlineTopHeadlineUiState, onNewsClick, onRetryClick = {
             offlineTopHeadlineViewModel.startFetchingArticles()
