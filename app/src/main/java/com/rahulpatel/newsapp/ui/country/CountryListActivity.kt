@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.rahulpatel.newsapp.data.model.Country
 import com.rahulpatel.newsapp.databinding.ActivityCountryListBinding
 import com.rahulpatel.newsapp.ui.base.UiState
-import com.rahulpatel.newsapp.ui.news.NewsListActivity
-import com.rahulpatel.newsapp.utils.AppConstant
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -56,13 +54,13 @@ class CountryListActivity : AppCompatActivity() {
 
         countryListAdapter.itemClickListener = { _, countryList ->
             val country = countryList as Country
-            startActivity(
+            /*startActivity(
                 NewsListActivity.getStartIntent(
                     context = this@CountryListActivity,
                     countryID = country.id,
                     newsType = AppConstant.NEWS_BY_COUNTRY
                 )
-            )
+            )*/
         }
     }
 

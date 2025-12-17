@@ -1,6 +1,6 @@
 package com.rahulpatel.newsapp.ui.news
 
-import android.content.Context
+/*import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -129,11 +129,7 @@ class NewsListActivity : BaseActivity() {
         newsListAdapter.notifyDataSetChanged()
     }
 
-    /*private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
-    }*/
+
 
     companion object {
 
@@ -158,4 +154,10 @@ class NewsListActivity : BaseActivity() {
             }
         }
     }
-}
+}*/
+
+/*private fun injectDependencies() {
+        DaggerActivityComponent.builder()
+            .applicationComponent((application as NewsApplication).applicationComponent)
+            .activityModule(ActivityModule(this)).build().inject(this)
+    }*/

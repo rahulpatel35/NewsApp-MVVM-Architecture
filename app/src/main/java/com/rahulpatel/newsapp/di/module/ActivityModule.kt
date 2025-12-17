@@ -3,7 +3,6 @@ package com.rahulpatel.newsapp.di.module
 import com.rahulpatel.newsapp.ui.country.CountryListAdapter
 import com.rahulpatel.newsapp.ui.language.LanguageListAdapter
 import com.rahulpatel.newsapp.ui.news.NewsListAdapter
-import com.rahulpatel.newsapp.ui.sources.NewsSourceAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +19,8 @@ class ActivityModule {
     /*@Provides
     fun providePaginationTopHeadlineAdapter() = PaginationTopHeadlineAdapter()*/
 
-    @Provides
-    fun provideNewsSourceAdapter() = NewsSourceAdapter(ArrayList())
+    /*@Provides
+    fun provideNewsSourceAdapter() = NewsSourceAdapter(ArrayList())*/
 
     @Provides
     fun provideNewsAdapter() = NewsListAdapter(ArrayList())

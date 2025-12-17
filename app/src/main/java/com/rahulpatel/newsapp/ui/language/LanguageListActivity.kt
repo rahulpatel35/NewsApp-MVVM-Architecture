@@ -14,7 +14,6 @@ import com.rahulpatel.newsapp.data.model.Language
 import com.rahulpatel.newsapp.databinding.ActivityLanguageListBinding
 import com.rahulpatel.newsapp.ui.BaseActivity
 import com.rahulpatel.newsapp.ui.base.UiState
-import com.rahulpatel.newsapp.ui.news.NewsListActivity
 import com.rahulpatel.newsapp.utils.AppConstant
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -121,13 +120,13 @@ class LanguageListActivity : BaseActivity() {
     }
 
     private fun onLanguageClick(languageString: String) {
-        startActivity(
+        /*startActivity(
             NewsListActivity.getStartIntent(
                 context = this@LanguageListActivity,
                 langList = languageString,
                 newsType = AppConstant.NEWS_BY_LANGUAGE
             )
-        )
+        )*/
     }
 
     private fun renderList(languageList: List<Language>) {

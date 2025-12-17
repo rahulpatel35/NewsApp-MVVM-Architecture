@@ -1,6 +1,6 @@
 package com.rahulpatel.newsapp.ui.sources
 
-import android.content.Context
+/*import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -106,11 +106,7 @@ class NewsSourcesActivity : BaseActivity() {
         newsSourceAdapter.notifyDataSetChanged()
     }
 
-    /*private fun injectDependencies() {
-        DaggerActivityComponent.builder()
-            .applicationComponent((application as NewsApplication).applicationComponent)
-            .activityModule(ActivityModule(this)).build().inject(this)
-    }*/
+
 
     companion object {
         fun getStartIntent(context: Context): Intent {
@@ -118,4 +114,12 @@ class NewsSourcesActivity : BaseActivity() {
         }
     }
 
-}
+}*/  /*private fun injectDependencies() {
+        DaggerActivityComponent.builder()
+            .applicationComponent((application as NewsApplication).applicationComponent)
+            .activityModule(ActivityModule(this)).build().inject(this)
+    }*/  /*private fun injectDependencies() {
+        DaggerActivityComponent.builder()
+            .applicationComponent((application as NewsApplication).applicationComponent)
+            .activityModule(ActivityModule(this)).build().inject(this)
+    }*/
