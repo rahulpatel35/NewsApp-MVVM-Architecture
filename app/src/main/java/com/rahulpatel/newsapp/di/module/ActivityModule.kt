@@ -25,9 +25,9 @@ class ActivityModule {
     @Provides
     fun provideNewsAdapter() = NewsListAdapter(ArrayList())
 
-    @Provides
+    /*@Provides
     fun provideCountryListAdapter() = CountryListAdapter(ArrayList())
-
+*/
     @Provides
     fun provideLanguageAdapter() = LanguageListAdapter(ArrayList())
 }

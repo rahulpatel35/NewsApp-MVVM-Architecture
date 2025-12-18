@@ -51,9 +51,9 @@
             android:exported="false" />-->
 
 
-        <activity
+        <!--<activity
             android:name=".ui.country.CountryListActivity"
-            android:exported="false" />
+            android:exported="false" />-->
 
         <activity
             android:name=".ui.search.SearchActivity"

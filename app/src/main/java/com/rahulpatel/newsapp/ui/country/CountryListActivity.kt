@@ -1,5 +1,6 @@
 package com.rahulpatel.newsapp.ui.country
 
+/*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -54,13 +55,15 @@ class CountryListActivity : AppCompatActivity() {
 
         countryListAdapter.itemClickListener = { _, countryList ->
             val country = countryList as Country
-            /*startActivity(
+            */
+/*startActivity(
                 NewsListActivity.getStartIntent(
                     context = this@CountryListActivity,
                     countryID = country.id,
                     newsType = AppConstant.NEWS_BY_COUNTRY
                 )
-            )*/
+            )*//*
+
         }
     }
 
@@ -101,15 +104,17 @@ class CountryListActivity : AppCompatActivity() {
         countryListAdapter.notifyDataSetChanged()
     }
 
-    /*private fun injectDependencies() {
+    */
+/*private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }*/
+    }*//*
+
 
     companion object {
         fun getStartIntent(context: Context): Intent {
             return Intent(context, CountryListActivity::class.java)
         }
     }
-}
+}*/
