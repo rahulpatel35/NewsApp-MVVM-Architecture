@@ -22,9 +22,9 @@ class ActivityModule {
     /*@Provides
     fun provideNewsSourceAdapter() = NewsSourceAdapter(ArrayList())*/
 
-    @Provides
-    fun provideNewsAdapter() = NewsListAdapter(ArrayList())
-
+    /* @Provides
+     fun provideNewsAdapter() = NewsListAdapter(ArrayList())
+ */
     /*@Provides
     fun provideCountryListAdapter() = CountryListAdapter(ArrayList())
 */

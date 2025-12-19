@@ -18,6 +18,7 @@ import com.rahulpatel.newsapp.ui.language.LanguageListRoute
 import com.rahulpatel.newsapp.ui.news.NewsListRoute
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineRoute
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineRoute
+import com.rahulpatel.newsapp.ui.search.SearchScreenRoute
 import com.rahulpatel.newsapp.ui.sources.NewsSourcesRoute
 import com.rahulpatel.newsapp.utils.AppConstant
 
@@ -35,9 +36,7 @@ sealed class Route(val name: String) {
     object NewsList :
         Route(name = "newslist?sourceId={sourceId}&countryId={countryId}&languageId={languageId}") {
         fun passData(
-            sourceId: String = "",
-            countryId: String = "",
-            languageId: String = ""
+            sourceId: String = "", countryId: String = "", languageId: String = ""
         ): String {
             return "newslist?sourceId=$sourceId&countryId=$countryId&languageId=$languageId"
         }
@@ -52,8 +51,7 @@ fun NewsNavHost() {
     val context = LocalContext.current
 
     NavHost(
-        navController = navController,
-        startDestination = Route.HomeScreen.name
+        navController = navController, startDestination = Route.HomeScreen.name
     ) {
         composable(route = Route.HomeScreen.name) {
             HomeScreenRoute(navController)
@@ -85,23 +83,18 @@ fun NewsNavHost() {
 
         composable(
             route = Route.NewsList.name,
-            arguments = listOf(
-                navArgument(AppConstant.SOURCE_ID) {
-                    type = NavType.StringType
-                    defaultValue = ""
-                },
-                navArgument(AppConstant.COUNTRY_ID) {
-                    type = NavType.StringType
-                    defaultValue = ""
+            arguments = listOf(navArgument(AppConstant.SOURCE_ID) {
+                type = NavType.StringType
+                defaultValue = ""
+            }, navArgument(AppConstant.COUNTRY_ID) {
+                type = NavType.StringType
+                defaultValue = ""
 
-                },
-                navArgument(AppConstant.LANGUAGE_ID) {
-                    type = NavType.StringType
-                    defaultValue = ""
+            }, navArgument(AppConstant.LANGUAGE_ID) {
+                type = NavType.StringType
+                defaultValue = ""
 
-                }
-            )
-        ) { it ->
+            })) { it ->
             val sourceId = it.arguments?.getString(AppConstant.SOURCE_ID).toString()
             val countryId = it.arguments?.getString(AppConstant.COUNTRY_ID).toString()
             val languageId = it.arguments?.getString(AppConstant.LANGUAGE_ID).toString()
@@ -120,6 +113,12 @@ fun NewsNavHost() {
         composable(route = Route.LanguageList.name) {
             LanguageListRoute(onLanguageClick = {
                 navController.navigate(route = Route.NewsList.passData(languageId = it))
+            })
+        }
+
+        composable(route = Route.Search.name) {
+            SearchScreenRoute(onNewsClick = {
+                openCustomChromeTab(context, it)
             })
         }
     }

@@ -1,5 +1,6 @@
 package com.rahulpatel.newsapp.ui.search
 
+/*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -104,11 +105,13 @@ class SearchActivity : BaseActivity() {
 
     }
 
-    /*private fun injectDependencies() {
+    */
+/*private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }*/
+    }*//*
+
 
     private fun renderList(articleList: List<Article>) {
         newsListAdapter.addArticles(articleList)
@@ -123,3 +126,4 @@ class SearchActivity : BaseActivity() {
 
 
 }
+*/
