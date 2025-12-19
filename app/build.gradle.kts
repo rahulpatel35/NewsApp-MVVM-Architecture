@@ -151,6 +151,10 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     // Material 3 (Material You) UI components — buttons, cards, themes, typography, etc.
     implementation(libs.androidx.material3)
+    implementation("androidx.compose.material:material-icons-core:1.x.x")
+    // Use the extended library for a full set of icons (larger artifact size)
+    implementation("androidx.compose.material:material-icons-extended:1.x.x")
+
     // Image loading library optimized for Jetpack Compose
     implementation(libs.coil.compose)
     // Enables injecting ViewModels and navigation graph dependencies with Hilt

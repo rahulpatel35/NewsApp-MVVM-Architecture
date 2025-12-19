@@ -28,8 +28,8 @@ class ActivityModule {
     /*@Provides
     fun provideCountryListAdapter() = CountryListAdapter(ArrayList())
 */
-    @Provides
-    fun provideLanguageAdapter() = LanguageListAdapter(ArrayList())
+    /*@Provides
+    fun provideLanguageAdapter() = LanguageListAdapter(ArrayList())*/
 }
 /*
 class ActivityModule(private val activity: AppCompatActivity) {

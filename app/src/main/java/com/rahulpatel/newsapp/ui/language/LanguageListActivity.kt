@@ -1,5 +1,6 @@
 package com.rahulpatel.newsapp.ui.language
 
+/*
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -120,13 +121,15 @@ class LanguageListActivity : BaseActivity() {
     }
 
     private fun onLanguageClick(languageString: String) {
-        /*startActivity(
+        */
+/*startActivity(
             NewsListActivity.getStartIntent(
                 context = this@LanguageListActivity,
                 langList = languageString,
                 newsType = AppConstant.NEWS_BY_LANGUAGE
             )
-        )*/
+        )*//*
+
     }
 
     private fun renderList(languageList: List<Language>) {
@@ -134,11 +137,13 @@ class LanguageListActivity : BaseActivity() {
         languageListAdapter.notifyDataSetChanged()
     }
 
-   /* private fun injectDependencies() {
+   */
+/* private fun injectDependencies() {
         DaggerActivityComponent.builder()
             .applicationComponent((application as NewsApplication).applicationComponent)
             .activityModule(ActivityModule(this)).build().inject(this)
-    }*/
+    }*//*
+
 
     companion object {
         fun getStartIntent(context: Context): Intent {
@@ -147,4 +152,4 @@ class LanguageListActivity : BaseActivity() {
     }
 
 
-}
+}*/

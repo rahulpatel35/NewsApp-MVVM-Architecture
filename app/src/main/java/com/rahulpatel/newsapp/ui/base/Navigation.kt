@@ -14,6 +14,7 @@ import androidx.core.net.toUri
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.rahulpatel.newsapp.ui.country.CountryListRoute
+import com.rahulpatel.newsapp.ui.language.LanguageListRoute
 import com.rahulpatel.newsapp.ui.news.NewsListRoute
 import com.rahulpatel.newsapp.ui.offline.OfflineTopHeadlineRoute
 import com.rahulpatel.newsapp.ui.pagination.PaginationTopHeadlineRoute
@@ -113,6 +114,12 @@ fun NewsNavHost() {
         composable(route = Route.CountryList.name) {
             CountryListRoute(onCountryClick = {
                 navController.navigate(route = Route.NewsList.passData(countryId = it))
+            })
+        }
+
+        composable(route = Route.LanguageList.name) {
+            LanguageListRoute(onLanguageClick = {
+                navController.navigate(route = Route.NewsList.passData(languageId = it))
             })
         }
     }
