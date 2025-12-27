@@ -151,9 +151,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     // Material 3 (Material You) UI components — buttons, cards, themes, typography, etc.
     implementation(libs.androidx.material3)
-    implementation("androidx.compose.material:material-icons-core:1.x.x")
+    implementation(libs.androidx.material.icons.core)
     // Use the extended library for a full set of icons (larger artifact size)
-    implementation("androidx.compose.material:material-icons-extended:1.x.x")
+    implementation(libs.androidx.material.icons.extended)
 
     // Image loading library optimized for Jetpack Compose
     implementation(libs.coil.compose)
@@ -167,8 +167,48 @@ dependencies {
     implementation(libs.androidx.foundation)
 
 
+// ================= UNIT TEST DEPENDENCIES =================
+
+// Mockito – for mocking classes and dependencies in unit tests
+    testImplementation(libs.mockito.core)
+
+// Architecture Components testing – LiveData, ViewModel testing utilities
+    testImplementation(libs.androidx.arch.core.core.testing)
+
+// Coroutines test library – control Dispatchers & test suspend functions
+    testImplementation(libs.kotlinx.coroutines.test)
+
+// Turbine – testing Kotlin Flow emissions easily
+    testImplementation(libs.turbine)
+
+
+// ================= UI / INSTRUMENTATION TEST DEPENDENCIES =================
+
+// AndroidX JUnit extensions – required for Android instrumented tests
+    androidTestImplementation(libs.androidx.junit)
+
+// Espresso – UI interaction & assertion framework
+    androidTestImplementation(libs.androidx.espresso.core)
+
+// Compose BOM – manages consistent versions for Compose UI test libraries
+    androidTestImplementation(platform(libs.androidx.compose.bom.v20230300))
+
+// Compose UI testing – test Composables with JUnit4
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+
+// Navigation testing – test NavController & navigation flows
+    androidTestImplementation(libs.androidx.navigation.testing)
+
+// Compose UI tooling – preview & inspection support (debug only)
+    debugImplementation(libs.androidx.ui.tooling)
+
+// Required for Compose UI tests to run properly
+    debugImplementation(libs.androidx.ui.test.manifest)
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(kotlin("test"))
 }
